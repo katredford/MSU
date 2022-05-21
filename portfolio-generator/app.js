@@ -1,33 +1,39 @@
-// var profileDataArgs = process.argv.slice(2, process.argv.length);
-// console.log(profileDataArgs);
+// const profileDataArgs = process.argv.slice(2);
 
-// const printProvileData = (profileDataArr) => {
-//     console.log(profileDataArr);
-// }
+//9.1
 
-// printProvileData(profileDataArgs)
+// 2 examples of a function on where the for loop is condensed by using foreach
+// to use: node app "name" "occupation" in the terminal 
+// const printProfileData = profileDataArr => {
+//   // This...
+//   for (let i = 0; i < profileDataArr.length; i += 1) {
+//     console.log(profileDataArr[i]);
+//   }
+
+//   console.log('================');
+
+//   // Is the same as this...
+//   profileDataArr.forEach((profileItem) => {
+//     console.log(profileItem)
+//   });
+// };
+
+// printProfileData(profileDataArgs);
+
+//9.2
+const fs = require('fs');
+const generatePage = require('./src/page-template.js');
 
 const profileDataArgs = process.argv.slice(2);
 
-// Notice the lack of parentheses around the `profileDataArr` parameter?
-// const printProfileData = profileDataArr => {
-//   for (let i = 0; i < profileDataArr.length; i++) {
-//     console.log(profileDataArr[i]);
-//   }
-// };
+const [name, github] = profileDataArgs;
 
-const printProfileData = profileDataArr => {
-  // This...
-  for (let i = 0; i < profileDataArr.length; i += 1) {
-    console.log(profileDataArr[i]);
-  }
 
-  console.log('================');
+// console.log(name, github);
+// console.log(generatePage(name, github));
 
-  // Is the same as this...
-  profileDataArr.forEach((profileItem) => {
-    console.log(profileItem)
-  });
-};
+fs.writeFile("index.html", generatePage(name, github), err => {
+  if (err) throw err;
 
-printProfileData(profileDataArgs);
+  console.log("portfolio complete! check out index.html to see the output!");
+});
