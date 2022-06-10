@@ -1,0 +1,10 @@
+node_modules
+.DS_Store
+.env
+
+//
+npm install express sequelize mysql2
+
+mysql -u root -p 
+
+source db/schema.sql
